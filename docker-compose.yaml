@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+  tmail-backend:
+    image: linagora/tmail-backend:memory-branch-master
+    container_name: tmail-backend
+    volumes:
+      - ./jwt_publickey:/root/conf/jwt_publickey
+      - ./jwt_privatekey:/root/conf/jwt_privatekey
+      - ./mailetcontainer.xml:/root/conf/mailetcontainer.xml
+      - ./listeners.xml:/root/conf/listeners.xml
+      - ./imapserver.xml:/root/conf/imapserver.xml
+      - ./jmap.properties:/root/conf/jmap.properties
+      - ./linagora-ecosystem.properties:/root/conf/linagora-ecosystem.properties
+      - ./openpaas.properties:/root/conf/openpaas.properties
+      - ../provisioning/integration_test/provisioning.sh:/root/conf/integration_test/provisioning.sh
+      - ../provisioning/integration_test/eml:/root/conf/integration_test/eml
+      - ./extensions-jars/tmail-ai-bot-jar-with-dependencies.jar:/root/libs/tmail-ai-bot-jar-with-dependencies.jar
+      - ./ai.properties:/root/conf/ai.properties
+      - ./extensions.properties:/root/conf/extensions.properties
+      - ./provisiong.sh:/root/provisioning/provisioning.sh
+    ports:
+        - "8002:80"
+        - "8000:8000"
+        - "25:25"
+        - "465:465"
+        - "587:587"
+        - "143:143"
+        - "993:993"
+    environment:
+      - DOMAIN=example.com
+    networks:
+      - tmail
+
+
+networks:
+  tmail:
+    driver: bridge

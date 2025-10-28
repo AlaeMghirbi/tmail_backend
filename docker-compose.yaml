@@ -6,20 +6,18 @@ services:
     image: linagora/tmail-backend:memory-branch-master
     container_name: tmail-backend
     volumes:
-      - ./jwt_publickey:/root/conf/jwt_publickey
-      - ./jwt_privatekey:/root/conf/jwt_privatekey
-      - ./mailetcontainer.xml:/root/conf/mailetcontainer.xml
-      - ./listeners.xml:/root/conf/listeners.xml
-      - ./imapserver.xml:/root/conf/imapserver.xml
-      - ./jmap.properties:/root/conf/jmap.properties
-      - ./linagora-ecosystem.properties:/root/conf/linagora-ecosystem.properties
-      - ./openpaas.properties:/root/conf/openpaas.properties
-      - ../provisioning/integration_test/provisioning.sh:/root/conf/integration_test/provisioning.sh
-      - ../provisioning/integration_test/eml:/root/conf/integration_test/eml
-      - ./extensions-jars/tmail-ai-bot-jar-with-dependencies.jar:/root/libs/tmail-ai-bot-jar-with-dependencies.jar
-      - ./ai.properties:/root/conf/ai.properties
-      - ./extensions.properties:/root/conf/extensions.properties
-      - ./provisiong.sh:/root/provisioning/provisioning.sh
+      - ./tmail/jwt_publickey:/root/conf/jwt_publickey
+      - ./tmail/jwt_privatekey:/root/conf/jwt_privatekey
+      - ./tmail/mailetcontainer.xml:/root/conf/mailetcontainer.xml
+      - ./tmail/listeners.xml:/root/conf/listeners.xml
+      - ./tmail/imapserver.xml:/root/conf/imapserver.xml
+      - ./tmail/jmap.properties:/root/conf/jmap.properties
+      - ./tmail/linagora-ecosystem.properties:/root/conf/linagora-ecosystem.properties
+      - ./tmail/openpaas.properties:/root/conf/openpaas.properties
+      - ./tmail/extensions-jars/tmail-ai-bot-jar-with-dependencies.jar:/root/libs/tmail-ai-bot-jar-with-dependencies.jar
+      - ./tmail/ai.properties:/root/conf/ai.properties
+      - ./tmail/extensions.properties:/root/conf/extensions.properties
+      - ./tmail/provisiong.sh:/root/provisioning/provisioning.sh
     ports:
         - "8002:80"
         - "8000:8000"
